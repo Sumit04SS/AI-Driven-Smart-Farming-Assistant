@@ -1,175 +1,229 @@
-# AI-Driven-Smart-Farming-Assistant-with-Multilingual-Agricultural-Guidance-and-Farmer-Supp-AUG-2026
+# 🌾 AI-Driven Smart Farming Assistant with Multilingual Agricultural Guidance
 
-# AI-Driven Smart Farming Assistant
+An AI-powered agricultural advisory system designed to help farmers access relevant agricultural information through intelligent question answering using Retrieval-Augmented Generation (RAG), vector search, and machine learning.
 
-## Milestone 1 – Agricultural Data Collection, Chunking & Vector Database
+## 📌 Project Overview
 
-This project is an AI-driven smart farming assistant designed to provide
-agricultural guidance using document-based retrieval and vector search.
+Agriculture plays an important role in the economy, but farmers often face difficulties accessing reliable information about crop diseases, pest management, fertilizer recommendations, irrigation, and agricultural practices.
 
-## Milestone 1 Objective
+This project aims to address these challenges by developing an AI-driven Smart Farming Assistant that retrieves relevant agricultural knowledge and generates context-aware responses to farmers' queries.
 
-The objective of Milestone 1 is to collect agricultural documents,
-extract their text, divide the text into smaller chunks, generate
-embeddings, and store the vectors in a Pinecone vector database.
+The system uses a Retrieval-Augmented Generation (RAG) pipeline with agricultural knowledge sources, semantic embeddings, and a vector database to improve the relevance of generated answers.
 
-## Data Sources
+## 🎯 Objectives
 
-The project uses the following agricultural documents:
+- Provide accessible agricultural guidance through an AI-powered assistant.
+- Retrieve relevant information from agricultural question-and-answer datasets.
+- Implement a Retrieval-Augmented Generation (RAG) pipeline.
+- Improve information retrieval using semantic embeddings and vector search.
+- Organize agricultural knowledge into meaningful categories.
+- Develop a user-friendly interface for interacting with the assistant.
+- Explore multilingual agricultural query assistance.
 
-1.FAO – Manual on Integrated Soil Management and Conservation Practices
-2.FAO – Plant Nutrition for Food Security: A Guide for Integrated Nutrient Management
-3.FAO – Irrigation Manual
-4.ICAR – Indian Agriculture after Independence
+## ✨ Key Features
 
-A starter agricultural dataset is also included.
+- **AI-Powered Agricultural Assistance:** Answers agricultural questions using retrieved knowledge.
+- **RAG-Based Question Answering:** Combines information retrieval with language generation.
+- **Semantic Search:** Retrieves contextually relevant agricultural information using embeddings.
+- **Vector Database Integration:** Uses Pinecone for storing and retrieving vector representations.
+- **Agricultural Knowledge Processing:** Processes and organizes agricultural question-and-answer data.
+- **Crop Recommendation:** Includes a machine-learning-based crop recommendation component.
+- **REST API:** Uses FastAPI to expose backend functionality.
+- **Interactive Frontend:** Provides an interface for users to interact with the system.
+- **Multilingual Assistance:** Project scope includes supporting agricultural queries in multiple languages.
 
-## Data Processing Pipeline
+## 🏗️ System Architecture
 
-PDF / Dataset
-    ↓
-Text Extraction
-    ↓
-Text Cleaning
-    ↓
-Chunking
-    ↓
-Embedding Generation
-    ↓
-Pinecone Vector Database
-    ↓
-Semantic Search
+The system follows a Retrieval-Augmented Generation architecture.
 
-## Project Structure
+### 1. Data Collection
+Agricultural question-and-answer information is collected from the Kisan Call Centre (KCC) dataset available through the Government of India's open data platform.
 
-AI-Agricultural-Advisory/
-│
-├── Data/
-│   ├── chunks/
-│   ├── datasets/
-│   ├── embeddings/
-│   ├── processed/
-│   ├── raw/
-│   ├── chunk_text.py
-│   ├── create_embeddings.py
-│   ├── create_pinecone_index.py
-│   ├── extract_remaining.py
-│   ├── test_search.py
-│   └── upload_to_pinecone.py
-│
-└── .gitignore
+### 2. Data Preprocessing
+- Load and clean the agricultural dataset.
+- Remove unusable records.
+- Organize agricultural information into relevant categories.
+- Prepare question-and-answer documents for processing.
 
-## Chunking
+### 3. Text Chunking
+Long documents are divided into smaller chunks using a recursive text-splitting approach to improve retrieval.
 
-The agricultural documents were divided into smaller text chunks
-to improve semantic retrieval.
+### 4. Embedding Generation
+Text chunks are converted into numerical vector representations using an embedding model.
 
-Each chunk contains:
+### 5. Vector Database
+The generated embeddings and associated metadata are stored in Pinecone for efficient similarity-based retrieval.
 
-- Chunk ID
-- Source document
-- Chunk number
-- Chunk text
+### 6. Query Processing
+When a user submits an agricultural question:
+- The query is processed.
+- Its semantic embedding is generated.
+- Relevant information is retrieved from Pinecone.
+- Retrieved context is passed to the language model.
 
-The generated chunks are stored as JSON files.
+### 7. Response Generation
+The language model uses the retrieved agricultural context to generate a relevant response.
 
-## Embeddings
+### 8. Frontend Integration
+The backend exposes API endpoints through FastAPI, allowing the frontend application to communicate with the agricultural advisory system.
 
-The text chunks were converted into numerical embedding vectors.
+## 🔄 RAG Workflow
 
-The embedding model produces vectors with 384 dimensions.
-
-## Pinecone Vector Database
-
-A Pinecone index named `agri-advisory` was created.
-
-Configuration:
-
-- Metric: Cosine Similarity
-- Vector Type: Dense
-- Dimension: 384
-- Cloud: AWS
-- Region: us-east-1
-
-The generated vectors were successfully uploaded to Pinecone.
-
-## Verification
-
-The vector upload was successfully completed for all four
-agricultural documents.
-
-Total vectors uploaded:
-
-**1,576**
-
-## Technologies Used
-
-- Python
-- PDF text extraction
-- Text chunking
-- Embeddings
-- Pinecone
-- JSON
-- CSV
-- Git
-- GitHub
-
-## Security
-
-API credentials are stored locally in a `.env` file.
-
-The `.env` file is excluded using `.gitignore` and is not included
-in the GitHub repository.
-
-## Milestone 1 Status
-
-- [x] Agricultural documents collected
-- [x] Dataset collected
-- [x] PDF text extraction
-- [x] Text processing
-- [x] Document chunking
-- [x] Embedding generation
-- [x] Pinecone index creation
-- [x] Vector upload
-- [x] Search testing
-- [x] GitHub repository updated
-
----
-
-## Milestone 2 – Modern Full-Stack Agriculture SaaS Application
-
-A premium, responsive, full-stack agricultural decision-support web application built with **React 19, TypeScript, Vite, Tailwind CSS v4, and FastAPI**.
-
-### Core Modules & Capabilities
-
-1. **Multilingual AI Agricultural Guidance (RAG)**: Interactive Q&A chat referencing verified FAO manuals and ICAR research documents stored in Pinecone with exact page citations and similarity match scores.
-2. **ML Crop Recommendation Engine**: High-accuracy Random Forest classifier evaluating 7 soil and microclimate variables (N, P, K, temperature, humidity, pH, rainfall) with top-3 probabilistic rankings and Production Guide explanations.
-3. **Soil Health & Nutrient Advisory**: Crop-specific soil fertility analysis and nutrient management guidance based on FAO integrated soil standards.
-4. **Smart Farm Advisor**: Holistic decision engine fusing live local weather conditions, soil test metrics, and phenological crop growth stages into prioritized actionable recommendations.
-5. **Live Agricultural Weather Station**: Real-time microclimate forecasting from Open-Meteo including wind speed, relative humidity, precipitation, and agricultural spraying/irrigation feasibility advisories.
-6. **AGMARKNET Mandi Market Prices & Alerts**: Cascading search across Indian states, mandis, and commodities with weekly price tables and automated price alert subscriptions.
-7. **Equipment Sharing Hub & Deal Calculator**: Peer-to-peer machinery rental marketplace with an interactive break-even and net savings calculator.
-8. **Automated Notification Center**: In-app alert notification tray with background daemon checks.
-
----
-
-## Quickstart Guide
-
-### 1. Backend Setup & Run
-
-Activate the Python virtual environment and launch the FastAPI server with Uvicorn:
-
-```bash
-# Windows PowerShell
-.\venv\Scripts\Activate.ps1
-uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+```text
+Agricultural Knowledge Dataset
+          |
+          v
+    Data Cleaning
+          |
+          v
+   Text Chunking
+          |
+          v
+ Embedding Generation
+          |
+          v
+   Pinecone Vector DB
+          |
+          |
+   User Agricultural Query
+          |
+          v
+   Query Embedding
+          |
+          v
+ Semantic Similarity Search
+          |
+          v
+ Relevant Context Retrieval
+          |
+          v
+   LLM Response Generation
+          |
+          v
+   Agricultural Guidance
 ```
 
-The API will be live at `http://127.0.0.1:8000` (Docs: `http://127.0.0.1:8000/docs`).
+## 🛠️ Technology Stack
 
-### 2. Frontend Setup & Run
+| Category | Technologies |
+|---|---|
+| Programming Language | Python, JavaScript |
+| Frontend | React.js, Vite |
+| Backend | FastAPI |
+| AI Architecture | Retrieval-Augmented Generation (RAG) |
+| Vector Database | Pinecone |
+| Embeddings | Sentence Transformers / configured embedding model |
+| Data Processing | Pandas, NumPy |
+| Machine Learning | Scikit-learn |
+| Model Integration | Groq / configured LLM provider |
+| API Communication | REST API |
+| Development Tools | VS Code, Git, GitHub |
 
-Open a second terminal, navigate to the `frontend` directory, and start the Vite development server:
+*The exact embedding and LLM providers should reflect the models actually used in the published implementation.*
+
+## 📂 Project Structure
+
+```text
+AI-Driven-Smart-Farming-Assistant/
+│
+├── backend/
+│   ├── main.py
+│   ├── routes/
+│   ├── services/
+│   ├── rag/
+│   ├── models/
+│   ├── config.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   └── package.json
+│
+├── data/
+├── notebooks/
+├── models/
+├── docs/
+├── screenshots/
+│
+├── README.md
+├── .gitignore
+└── LICENSE
+```
+
+## ⚙️ Installation and Setup
+
+### Prerequisites
+
+- Python 3.10+
+- Node.js and npm
+- Git
+- Pinecone account and API key
+- API key for the configured LLM provider
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/AI-Driven-Smart-Farming-Assistant.git
+
+cd AI-Driven-Smart-Farming-Assistant
+```
+
+### 2. Backend Setup
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment.
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r backend/requirements.txt
+```
+
+### 3. Environment Configuration
+
+Create a `.env` file in the appropriate backend configuration directory.
+
+Example:
+
+```env
+PINECONE_API_KEY=your_pinecone_api_key
+GROQ_API_KEY=your_groq_api_key
+```
+
+Add other configuration variables required by your actual implementation.
+
+Never commit API keys or credentials.
+
+### 4. Run the Backend
+
+From the project root:
+
+```bash
+uvicorn backend.main:app --reload
+```
+
+Backend API:
+
+```text
+http://127.0.0.1:8000
+```
+
+API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### 5. Frontend Setup
 
 ```bash
 cd frontend
@@ -177,15 +231,85 @@ npm install
 npm run dev
 ```
 
-The application will be accessible in your browser at `http://localhost:5173`.
-Vite dev server proxies all `/api/*` requests directly to `http://127.0.0.1:8000`.
+Open the local development URL displayed in the terminal.
 
-### 3. Frontend Production Build & Type-Check
+## 📊 Agricultural Knowledge Base
 
-To test type checking and create an optimized production build:
+The project uses agricultural question-and-answer information from the Kisan Call Centre dataset.
 
-```bash
-cd frontend
-npm run build
-```
+The knowledge base covers categories such as:
 
+- Crop Disease and Pest Management
+- Fertilizer and Nutrient Management
+- Crop Cultivation
+- Seeds and Varieties
+- Livestock and Animal Husbandry
+- Government Schemes and Finance
+- Other Agricultural Topics
+
+The dataset is cleaned, categorized, chunked, and prepared for semantic retrieval.
+
+## 🧠 Machine Learning Component
+
+The system also incorporates a crop recommendation component based on machine learning.
+
+The component is intended to analyze agricultural input parameters and provide crop recommendations based on the trained model.
+
+The model implementation and supported input parameters should be documented alongside the corresponding source files.
+
+## 🔐 Security and Data Handling
+
+- API credentials are stored in environment variables.
+- Sensitive configuration files are excluded from version control.
+- Private datasets and company-owned resources are not included in this public portfolio repository.
+- Only authorized source code and documentation are published.
+
+## 🚀 Future Enhancements
+
+- Improve multilingual query understanding and response generation.
+- Expand the agricultural knowledge base.
+- Integrate additional trusted agricultural information sources.
+- Improve retrieval accuracy and response relevance.
+- Add voice-based agricultural assistance.
+- Develop a mobile-friendly experience.
+- Add source references to retrieved agricultural answers.
+
+## 👨‍💻 My Contributions
+
+This project was developed as part of an internship project.
+
+My work involved:
+
+- Working with agricultural question-and-answer datasets.
+- Exploring and implementing data preprocessing techniques.
+- Categorizing agricultural knowledge.
+- Implementing document chunking for RAG.
+- Working with embedding generation and semantic search.
+- Integrating Pinecone as a vector database.
+- Developing and integrating backend services using FastAPI.
+- Exploring frontend and API integration.
+- Working with machine learning components for agricultural recommendations.
+
+*Adjust this section to accurately reflect your individual contributions and the work you are authorized to disclose.*
+
+## 📚 Data Source
+
+Kisan Call Centre (KCC) dataset:
+
+Government of India – Open Government Data Platform
+
+https://www.data.gov.in/
+
+## 📬 Contact
+
+For project-related discussions, collaboration, or technical queries, feel free to connect.
+
+GitHub: https://github.com/YOUR-USERNAME
+
+LinkedIn: Add your LinkedIn profile URL
+
+---
+
+⭐ If you find this project interesting, consider giving this repository a star.
+
+**Built to explore the intersection of Artificial Intelligence and Agriculture.** 🌱
